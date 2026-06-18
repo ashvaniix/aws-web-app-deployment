@@ -1,39 +1,70 @@
-# AWS Web Application Deployment
+# AWS EC2 Web Application Deployment
 
 ## Objective
-The objective of this task is to deploy a simple web application on an Amazon EC2 instance within a Virtual Private Cloud (VPC). The task demonstrates the integration of compute and networking services in AWS.
+Deploy a simple web application on an Amazon EC2 instance within a VPC and configure Security Groups for web access.
 
-## Architecture
-User → Internet → Security Group → EC2 Instance → Apache Web Server → Web Application
-
-## AWS Services Used
-- Amazon EC2
+## Services Used
 - Amazon VPC
+- Amazon EC2
 - Security Groups
-- Apache HTTP Server
+- Apache Web Server
 
-## Deployment Steps
-
-### Step 1: Create VPC
+## Step 1: Create VPC
 - Created a custom VPC.
-- Configured public subnet.
-- Attached Internet Gateway.
+- Configured a public subnet.
+- Attached an Internet Gateway.
+- Updated route tables.
 
-### Step 2: Configure Security Group
-Added inbound rules:
-- SSH (Port 22)
-- HTTP (Port 80)
+## Step 2: Configure Security Group
+- Allowed SSH access on Port 22.
+- Allowed HTTP access on Port 80.
 
-### Step 3: Launch EC2 Instance
+## Step 3: Launch EC2 Instance
 - Selected Amazon Linux AMI.
 - Chose t2.micro instance type.
-- Attached the instance to the created VPC.
+- Attached Security Group.
 
-### Step 4: Install Web Server
-Commands used:
+## Step 4: Install Apache Web Server
 
 ```bash
 sudo yum update -y
 sudo yum install httpd -y
 sudo systemctl start httpd
 sudo systemctl enable httpd
+```
+
+## Step 5: Deploy Web Application
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>AWS Web App</title>
+</head>
+<body>
+<h1>Hello from AWS EC2</h1>
+<p>Web application deployed successfully.</p>
+</body>
+</html>
+```
+
+## Security Group Rules
+
+| Type | Port |
+|--------|--------|
+| SSH | 22 |
+| HTTP | 80 |
+
+## Deliverables
+- Running Web Application
+- Deployment Documentation
+- Security Group Configuration
+
+## Challenges Faced
+- Understanding VPC networking
+- Configuring Security Groups
+- Managing Apache Web Server
+- Testing application connectivity
+
+## Conclusion
+Successfully deployed a web application on an EC2 instance inside a VPC and configured Security Groups for secure access.
